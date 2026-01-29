@@ -15,7 +15,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Address {
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

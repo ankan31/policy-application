@@ -14,7 +14,7 @@ import lombok.Data;
 @Entity
 @Data
 public class PolicyHolder {
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Pattern(regexp = "[MF]", message = "Gender must be 'M' or 'F'")

@@ -15,7 +15,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Agent {
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int agentNumber;
     private String name;
     private String email;
