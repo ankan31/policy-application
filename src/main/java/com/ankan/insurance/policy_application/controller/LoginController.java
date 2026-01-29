@@ -25,8 +25,8 @@ public class LoginController {
     @Autowired
     private JwtService  jwtService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginUser loginUser) {
+    @PostMapping("/auth")
+    public ResponseEntity<?> auth(@RequestBody LoginUser loginUser) {
         // Implement login logic here
         if (loginUser != null) {
             // Check if user exists in the database
