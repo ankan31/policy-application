@@ -18,8 +18,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                          AuthenticationException exception) throws IOException {
         response.setContentType("application/json");
         response.getWriter().write(
-            String.format("{\"timestamp\":\"%s\",\"error\":\"Unauthorized\",\"message\":\"%s\",\"path\":\"%s\"}",
-                          LocalDateTime.now(), exception.getMessage(), request.getRequestURI())
+            String.format("{\"timestamp\":\"%s\",\"error\":\"%s\",\"message\":\"%s\",\"path\":\"%s\"}",
+                          LocalDateTime.now(), exception.getClass().getSimpleName(), exception.getMessage(), request.getRequestURI())
         );
     }
 }

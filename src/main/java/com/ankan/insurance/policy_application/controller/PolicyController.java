@@ -9,8 +9,6 @@ import com.ankan.insurance.policy_application.entity.Policy;
 import com.ankan.insurance.policy_application.repo.PolicyRepo;
 import com.ankan.insurance.policy_application.service.PolicyService;
 
-import java.util.Optional;
-
 import javax.naming.AuthenticationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +38,8 @@ public class PolicyController {
         }
     }
 
-    @GetMapping({"/{policyNumber}", "/{policyNumber}/{param}"})
-    public Object getPolicyDetails(@PathVariable int policyNumber, @PathVariable Optional<String> param) throws AuthenticationException {
+    @GetMapping({"/{policyNumber}"})
+    public Object getPolicyDetails(@PathVariable int policyNumber) throws AuthenticationException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication!= null && authentication.getPrincipal() instanceof LoginUser) {
             LoginUser user = (LoginUser) authentication.getPrincipal();
@@ -51,11 +49,7 @@ public class PolicyController {
             } else if (user.getAgent() != null && user.getAgent().getAgentNumber() == policy.getAgent().getAgentNumber()) {
                 return new PolicyforAgent(policy);
             } else if (user.getPolicy() != null && user.getPolicy().getPolicyNumber() == policy.getPolicyNumber()) {
-                if (param.isEmpty() || !param.get().equals("data")) {
-                    return new PolicyforAgent(policy);
-                } else {
-                    return policy;
-                }
+                return new PolicyforAgent(policy);
             } else {
                 throw new BadCredentialsException("Unauthorized access");
                 
