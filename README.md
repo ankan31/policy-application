@@ -1,4 +1,4 @@
-# Policy Application
+# Policy Interface for an Insurance Firm
 
 A Spring Boot REST API for managing insurance policies and agents with JWT-based authentication.
 
