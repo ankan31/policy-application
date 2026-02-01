@@ -1,0 +1,95 @@
+{
+  "info": {
+    "name": "Policy Application API",
+    "description": "API collection for the Insurance Policy Application (Spring Boot)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "POST /auth",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"yourpassword\"\n}"
+            },
+            "url": "{{baseUrl}}/auth",
+            "description": "Authenticate user and get JWT token"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agent",
+      "item": [
+        {
+          "name": "GET /agent/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/agent/",
+            "description": "Get agent details (admin gets all agents, others get own agent info)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Policy",
+      "item": [
+        {
+          "name": "GET /policy/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/policy/",
+            "description": "Get list of policies for authenticated user"
+          }
+        },
+        {
+          "name": "GET /policy/:policyNumber",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/policy/:policyNumber",
+              "host": ["{{baseUrl}}"],
+              "path": ["policy", ":policyNumber"],
+              "variable": [
+                {
+                  "key": "policyNumber",
+                  "value": "1",
+                  "description": "The policy number (integer)"
+                }
+              ]
+            },
+            "description": "Get policy details by policy number"
+          }
+        }
+      ]
+    }
+  ]
+}
